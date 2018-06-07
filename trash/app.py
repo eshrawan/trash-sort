@@ -37,7 +37,7 @@ def what_is_it(image_name):
 
 def ClickPicture():
  
-    return "/Users/Esh/Desktop/github/trash-sort/trash/ChickenBones.jpg"
+    return "/Users/Esh/Desktop/github/trash-sort/trash/plastic-food.jpg"
 
 def MasterFunction():
         image_name = ClickPicture();
