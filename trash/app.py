@@ -3,6 +3,7 @@
 # import required libs and functions
 from classify_image import run_inference_on_image
 from class_list import class_dictionary
+import picamera
 
 # Set trash type hash
 waste_type = {"r":"Recycling", "c":"Compost"}
@@ -36,8 +37,19 @@ def what_is_it(image_name):
 
 
 def ClickPicture():
- 
-    return "/Users/Esh/Desktop/github/trash-sort/trash/plastic-food.jpg"
+	filename="photo.jpg"
+	try:
+		camera = picamera.PiCamera()
+		camera.resolution = (256,192)
+		camera.brightness = 70
+		camera.contrast = 70
+		camera.saturation = 0
+		camera.awb_mode = 'incandescent'
+		camera.capture(filename)
+		print("Photo Saved: "+filename)
+	finally:
+		camera.close()
+	return filename
 
 def MasterFunction():
         image_name = ClickPicture();
@@ -51,8 +63,8 @@ def MasterFunction():
             
         del image_name
 
-
-MasterFunction()
+while (1):
+	MasterFunction()
 
 
 # # webapp
