@@ -4,6 +4,7 @@
 from classify_image import run_inference_on_image
 from class_list import class_dictionary
 import picamera
+import gc
 
 # Set trash type hash
 waste_type = {"r":"Recycling", "c":"Compost"}
@@ -65,6 +66,7 @@ def MasterFunction():
 
 while (1):
 	MasterFunction()
+	gc.collect()
 
 
 # # webapp
