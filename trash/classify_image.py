@@ -120,6 +120,7 @@ class NodeLookup():
     return node_id_to_name
 
   def id_to_string(self, node_id):
+    print("9")
     if node_id not in self.node_lookup:
       return ''
     return self.node_lookup[node_id]
@@ -148,6 +149,7 @@ def run_inference_on_image(image):
 
   # Creates graph from saved GraphDef.
   create_graph()
+  print("7")
 
   with tf.Session() as sess:
     # Some useful tensors:
@@ -159,13 +161,15 @@ def run_inference_on_image(image):
     #   encoding of the image.
     # Runs the softmax tensor by feeding the image_data as input to the graph.
     softmax_tensor = sess.graph.get_tensor_by_name('softmax:0')
+    print("17")
     predictions = sess.run(softmax_tensor,
                            {'DecodeJpeg/contents:0': image_data})
+    print("18")
     predictions = np.squeeze(predictions)
-
+    print("5")
     # Creates node ID --> English string lookup.
     node_lookup = NodeLookup()
-
+    print("6")
     predictions_and_scores = {}
     top_k = predictions.argsort()[-FLAGS.num_top_predictions:][::-1]
     for node_id in top_k:
@@ -176,10 +180,10 @@ def run_inference_on_image(image):
       predictions_and_scores[human_string] = score
 
     sorted_predictions_and_scores = sorted(predictions_and_scores.items(), key=operator.itemgetter(1))
-
+    print("4")
     # print(sorted_predictions_and_scores)
     return sorted_predictions_and_scores
-
+    sess.close()
 
 
 # Don't need necessarily need this method so long as we include the inception model with the program 

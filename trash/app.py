@@ -22,11 +22,13 @@ def top_prediction_name(prediction):
 
 
 def what_is_it(image_name):
-    image_path = image_name  # Setting variable for image filepath.
+    image_path = image_name
+    print("2")  # Setting variable for image filepath.
     top_5 = predict_top_5(image_path)  # Pulling-out the top 5 matched results
     print (top_5)
 
-    top = top_5[4]  # Pulling-out the top class
+    top = top_5[4]
+    print("3")  # Pulling-out the top class
     top_name = top[0]  # Pulling-out the top class name
 
     print ("THE OBJECT WAS: " + top_name)
@@ -53,7 +55,8 @@ def ClickPicture():
 	return filename
 
 def MasterFunction():
-        image_name = ClickPicture();
+        image_name = ClickPicture()
+        print("1")
         trash_type = what_is_it(image_name)
         print ("WASTE TYPE: " + waste_type[trash_type])
 
